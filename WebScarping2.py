@@ -1,3 +1,7 @@
+import requests
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
 
 from selenium.webdriver.common.by import By
@@ -32,20 +36,20 @@ driver = webdriver.Chrome(service=service, options=chrome_options)
 
 try:
 
-    # Paso 1: Abre Wikipedia
+    # Paso 1: Abre la página del Tec
 
-    driver.get("https://es.wikipedia.org/wiki/Wikipedia:Portada")
+    driver.get("https://itp.itpachuca.edu.mx/")
 
 
     # Espera a que el cuadro de búsqueda esté presente
 
-    search_box = WebDriverWait(driver, 20).until(
+    search_box = WebDriverWait(driver, 10).until(
 
-        EC.presence_of_element_located((By.ID, "searchInput"))
+        EC.presence_of_element_located((By.ID, "Ingenierias"))
 
     )
 
-    search_box.send_keys("TecNM")
+    search_box.send_keys("Ingenierías")
 
     search_box.submit()
 
@@ -63,13 +67,13 @@ try:
 
     # Espera a que la página del Instituto Tecnológico de Pachuca se cargue
 
-    oferta_academica_link = WebDriverWait(driver, 10).until(
+    ingenierias_link = WebDriverWait(driver, 10).until(
 
-        EC.presence_of_element_located((By.LINK_TEXT, "Oferta académica"))
+        EC.presence_of_element_located((By.LINK_TEXT, "Ingenierias"))
 
     )
 
-    oferta_academica_link.click()
+    ingenierias_link.click()
 
 
 finally:
